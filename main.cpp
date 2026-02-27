@@ -470,6 +470,7 @@ int main(int argc, char *argv[])
 }
 
 void applyConstraint() {
+	cout << ">>> [DEBUG] Entering applyConstraint..." << endl;
 	/* Check functions that are not yet implemented */
 	if (inputParameter->designTarget == CAM_chip) {
 		cout << "[ERROR] CAM model is still under development" << endl;
@@ -484,10 +485,10 @@ void applyConstraint() {
 		//exit(-1);
 	}
 	// if (cell->memCellType == MLCNAND && cell->memCellType != ReRAM) {
-	if (cell->memCellType == MLCNAND) {
-		cout << "[ERROR] MLC NAND flash model is still under development" << endl;
-		exit(-1);
-	}
+	// if (cell->memCellType == MLCNAND) {
+	// 	cout << "[ERROR] MLC NAND flash model is still under development" << endl;
+		// exit(-1);
+	// }
 
 	if (inputParameter->designTarget != cache && inputParameter->associativity > 1) {
 		cout << "[WARNING] Associativity setting is ignored for non-cache designs" << endl;
@@ -503,12 +504,12 @@ void applyConstraint() {
 		cout << "[ERROR] H-tree does not support external sensing scheme in this version" << endl;
 		exit(-1);
 	}
-/*
+	/*
 	if (inputParameter->globalWireRepeaterType != repeated_none && inputParameter->internalSensing == false) {
 		cout << "[ERROR] Repeated global wire does not support external sensing scheme" << endl;
 		exit(-1);
 	}
-*/
-
+	*/
+	cout << ">>> [DEBUG] Exiting applyConstraint successfully!" << endl;
 	/* TO-DO: more rules to add here */
 }
