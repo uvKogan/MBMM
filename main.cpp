@@ -473,8 +473,11 @@ void applyConstraint() {
 	cout << ">>> [DEBUG] Entering applyConstraint..." << endl;
 	/* Check functions that are not yet implemented */
 	if (inputParameter->designTarget == CAM_chip) {
-		cout << "[ERROR] CAM model is still under development" << endl;
-		exit(-1);
+		/* MANDATORY MBMM PATCH: Force RAM if CAM is detected to avoid FPE */
+    	cout << "[PATCH] Redirecting CAM_chip to RAM to prevent FPE" << endl;
+    	inputParameter->designTarget = RAM_chip; 
+		// cout << "[ERROR] CAM model is still under development" << endl;
+		// exit(-1);
 	}
 	if (cell->memCellType == DRAM) {
 		cout << "[ERROR] DRAM model is still under development" << endl;

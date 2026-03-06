@@ -183,6 +183,15 @@ void Mat::Initialize(int _numRowSubarray, int _numColumnSubarray, int _numAddres
 }
 
 void Mat::CalculateArea() {
+	if (numActiveSubarrayPerRow > 0 && numActiveSubarrayPerColumn > 0) {
+        cout << ">>> [DEBUG-SOLVER] Exploring Geometry: " 
+             << numActiveSubarrayPerRow << "x" << numActiveSubarrayPerColumn << endl;
+    }
+	cout << ">>> [DEBUG-AREA] width: " << width << " | height: " << height << endl;
+	if (width == 0 || height == 0) {
+	    cout << ">>> [CRITICAL] Zero dimension detected!" << endl;
+	}
+
 	if (!initialized) {
 		cout << "[Mat] Error: Require initialization first!" << endl;
 	} else if (invalid) {
@@ -240,6 +249,12 @@ void Mat::CalculateRC() {
 }
 
 void Mat::CalculateLatency(double _rampInput) {
+	// Inside Mat::CalculateLatency()
+	cout << ">>> [DEBUG-LATENCY] entering CalculateLatency..." << endl;
+	
+	/* If you find the line calculating sensing delay, instrument it: */
+	// Example: delay = capacitance / current;
+	cout << ">>> [DEBUG-SENSE] Subarray width: " << subarray.width << endl;
 	if (!initialized) {
 		cout << "[Mat] Error: Require initialization first!" << endl;
 	} else if (invalid) {
